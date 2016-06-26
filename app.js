@@ -27,13 +27,15 @@ app.post('/suggest', (req, res) => {
     const userName = req.body.user_name;
     console.log('yas', req.body);
 
-    const payload = {
-        text: 'yo whatzup'
-    };
-
-    return (userName !== 'slackbot') ?
-        res.status(200).json(payload) :
-        res.status(200).end();
+    emojiSuggester.suggestEmojis(req.body.text)$
+        .then(emojis => {
+            const payload = {
+                text: emojis.join(' ')
+            };
+            return (userName !== 'slackbot') ?
+                res.status(200).json(payload) :
+                res.status(200).end();
+        });
 });
 
 // listening to server
