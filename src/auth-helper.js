@@ -14,6 +14,13 @@ function sendOauthAccess(code) {
     return got(url);
 }
 
+function getParameterFromUrl(url, paramName) {
+    return new Uri(url)
+        .getQueryParamValues(paramName)
+        .toString();
+}
+
 module.exports = {
+    getParameterFromUrl,
     sendOauthAccess
 };
