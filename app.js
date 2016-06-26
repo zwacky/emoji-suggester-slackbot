@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 5555;
 
 const emojiSuggester = require('./src/emoji-suggester');
+const auth = require('./src/auth');
 
 // body parser middleware
 app.use(bodyParser.urlencoded({
@@ -36,6 +37,15 @@ app.post('/suggest', (req, res) => {
                 res.status(200).json(payload) :
                 res.status(200).end();
         });
+});
+
+/**
+ * handling oauth flow.
+ */
+app.get('/oauth', (req, res) => {
+    auth.sendOauthAccess(req.params.code)
+        .then(() => res.status(200).send('ok!'))
+        .catch(() => res.status(200).send('failed 💩!'));
 });
 
 // listening to server
