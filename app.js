@@ -28,7 +28,7 @@ app.post('/suggest', (req, res) => {
     const userName = req.body.user_name;
     console.log('yas', req.body);
 
-    emojiSuggester.suggestEmojis(req.body.text)$
+    emojiSuggester.suggestEmojis(req.body.text)
         .then(emojis => {
             const payload = {
                 text: emojis.join(' ')
