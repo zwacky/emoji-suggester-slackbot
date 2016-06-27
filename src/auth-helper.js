@@ -4,7 +4,7 @@ const got = require('got');
 const Uri = require('jsuri');
 
 const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.SECRET;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 function sendOauthAccess(code) {
     const url = new Uri('https://slack.com/api/oauth.access')
