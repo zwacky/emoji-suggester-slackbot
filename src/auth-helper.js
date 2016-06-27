@@ -10,8 +10,9 @@ function sendOauthAccess(code) {
     const url = new Uri('https://slack.com/api/oauth.access')
         .addQueryParam('client_id', CLIENT_ID)
         .addQueryParam('client_secret', CLIENT_SECRET)
-        .addQueryParam('code', code);
-    return got(url.toString());
+        .addQueryParam('code', code)
+        .toString();
+    return got(url);
 }
 
 function getParameterFromUrl(url, paramName) {
