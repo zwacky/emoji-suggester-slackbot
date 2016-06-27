@@ -4,13 +4,13 @@ const got = require('got');
 const cheerio = require('cheerio');
 const Uri = require('jsuri');
 
-const DANGO_API = 'emoji.getdango.com/api';
+const DANGO_API = 'http://emoji.getdango.com/api';
 
 function suggestEmojis(text) {
     return got(`${DANGO_API}/emoji`, {
         json: true,
         query: {
-            q: text
+            q: text || 'default'
         }
     }).then(response => {
         return response.body.results

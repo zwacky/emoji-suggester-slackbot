@@ -26,7 +26,6 @@ app.get('/', (req, res) => {
 app.post('/suggest', (req, res) => {
     // check if message starts with url
     const userName = req.body.user_name;
-    console.log('yas', req.body);
 
     emojiSuggester.suggestEmojis(req.body.text)
         .then(emojis => {
