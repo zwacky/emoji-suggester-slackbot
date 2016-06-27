@@ -11,7 +11,7 @@ function sendOauthAccess(code) {
         .addQueryParam('client_id', CLIENT_ID)
         .addQueryParam('client_secret', CLIENT_SECRET)
         .addQueryParam('code', code);
-    return got(url);
+    return got(url.toString());
 }
 
 function getParameterFromUrl(url, paramName) {
