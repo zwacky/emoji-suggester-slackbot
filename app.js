@@ -47,10 +47,7 @@ app.post('/suggest', (req, res) => {
 app.get('/oauth', (req, res) => {
     const code = authHelper.getParameterFromUrl(req.url, 'code');
     authHelper.sendOauthAccess(code)
-        .then((result) => {
-            console.log('[ultimate debugging] oauth reponse:', result.body);
-            res.status(200).send('ok!');
-        })
+        .then((result) => res.status(200).send('ok!'))
         .catch(() => res.status(200).send('failed 💩!'));
 });
 
