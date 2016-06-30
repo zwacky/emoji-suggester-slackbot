@@ -10,6 +10,26 @@ function isUrl(str) {
     return pattern.test(str);
 }
 
+/**
+ * builds a slack message block for an emoji suggestion.
+ *
+ * @param string requestText
+ * @param array emojis
+ * @return object
+ */
+function buildSuggestMessage(requestText, emojis) {
+    return {
+        'text': 'Your request: *meow*',
+        'unfurl_links': false,
+        'attachments': [
+            {
+                'text': emojis.join(' ')
+            }
+        ]
+    };
+}
+
 module.exports = {
-    isUrl
+    isUrl,
+    buildSuggestMessage,
 };

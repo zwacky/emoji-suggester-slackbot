@@ -27,29 +27,21 @@ app.get('/', (req, res) => {
  */
 app.post('/suggest', (req, res) => {
     const userName = req.body.user_name;
-    const promise = (emojiHelper.isUrl(req.body.text)) ?
+    const requestText = req.body.text;
+    const promise = (emojiHelper.isUrl(requestText)) ?
         emojiSuggester.suggestEmojis(req.body.text) :
         emojiSuggester.suggestEmojisFromUrl(req.body.text);
     const response_url = req.body.response_url;
 
     // send immediate response since there is a 3000ms limit on request times
-    res.status(200).json({
-        text: 'Request in progress... 😼'
-    });
+    res.status(200).end();
 
-    console.log('==');
     promise
         .then(emojis => {
-            console.log('inc emojis', emojis);
-            console.log('response_url', response_url);
-            const payload = {
-                text: emojis.join(' ')
-            };
+            const payload = emojiHelper.buildSuggestMessage(requestText, emojis);
             got.post(response_url, {
                 body: JSON.stringify(payload)
-            })
-            .then(console.log)
-            .catch(console.log);
+            });
         });
 });
 
