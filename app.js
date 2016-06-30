@@ -9,6 +9,7 @@ const port = process.env.PORT || 5555;
 const emojiSuggester = require('./src/emoji-suggester');
 const emojiHelper = require('./src/emoji-helper');
 const authHelper = require('./src/auth-helper');
+const got = require('got');
 
 // body parser middleware
 app.use(bodyParser.urlencoded({
