@@ -19,7 +19,7 @@ function isUrl(str) {
  */
 function buildSuggestMessage(requestText, emojis) {
     return {
-        'text': 'Your request: *meow*',
+        'text': `Your request: *${requestText}*`,
         'unfurl_links': false,
         'attachments': [
             {
