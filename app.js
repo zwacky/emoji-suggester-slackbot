@@ -25,22 +25,28 @@ app.get('/', (req, res) => {
  * depending on the content it will suggest emojis from text or a URL content.
  */
 app.post('/suggest', (req, res) => {
-    console.log('=== body', req.body);
-    console.log('--- response_url', req.body.response_url);
     const userName = req.body.user_name;
     const promise = (emojiHelper.isUrl(req.body.text)) ?
         emojiSuggester.suggestEmojis(req.body.text) :
         emojiSuggester.suggestEmojisFromUrl(req.body.text);
+    const response_url = req.body.response_url;
+
+    // send immediate response since there is a 3000ms limit on request times
+    res.status(200).json({
+        text: 'Request in progress... 😼'
+    });
 
     promise
         .then(emojis => {
             const payload = {
                 text: emojis.join(' ')
             };
-            return (userName !== 'slackbot') ?
-                res.status(200).json(payload) :
-                res.status(200).end();
+            got.post(response_url, {
+                body: payload
+            });
         });
+
+
 });
 
 /**
