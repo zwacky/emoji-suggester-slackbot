@@ -43,7 +43,9 @@ app.post('/suggest', (req, res) => {
             };
             got.post(response_url, {
                 body: payload
-            });
+            })
+            .then(console.log)
+            .catch(console.log);
         });
 
 
