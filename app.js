@@ -36,8 +36,11 @@ app.post('/suggest', (req, res) => {
         text: 'Request in progress... 😼'
     });
 
+    console.log('==');
     promise
         .then(emojis => {
+            console.log('inc emojis', emojis);
+            console.log('response_url', response_url);
             const payload = {
                 text: emojis.join(' ')
             };
@@ -47,8 +50,6 @@ app.post('/suggest', (req, res) => {
             .then(console.log)
             .catch(console.log);
         });
-
-
 });
 
 /**
