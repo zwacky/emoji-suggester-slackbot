@@ -25,6 +25,8 @@ app.get('/', (req, res) => {
  * depending on the content it will suggest emojis from text or a URL content.
  */
 app.post('/suggest', (req, res) => {
+    console.log('=== body', req.body);
+    console.log('--- response_url', req.body.response_url);
     const userName = req.body.user_name;
     const promise = (emojiHelper.isUrl(req.body.text)) ?
         emojiSuggester.suggestEmojis(req.body.text) :
