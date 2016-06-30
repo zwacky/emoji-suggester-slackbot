@@ -46,7 +46,7 @@ app.post('/suggest', (req, res) => {
                 text: emojis.join(' ')
             };
             got.post(response_url, {
-                body: payload
+                body: JSON.stringify(payload)
             })
             .then(console.log)
             .catch(console.log);
