@@ -28,9 +28,10 @@ app.get('/', (req, res) => {
 app.post('/suggest', (req, res) => {
     const userName = req.body.user_name;
     const requestText = req.body.text;
+    console.log('request', requestText);
     const promise = (emojiHelper.isUrl(requestText)) ?
-        emojiSuggester.suggestEmojis(req.body.text) :
-        emojiSuggester.suggestEmojisFromUrl(req.body.text);
+        emojiSuggester.suggestEmojis(requestText) :
+        emojiSuggester.suggestEmojisFromUrl(requestText);
     const response_url = req.body.response_url;
 
     // send immediate response since there is a 3000ms limit on request times
@@ -38,6 +39,7 @@ app.post('/suggest', (req, res) => {
 
     promise
         .then(emojis => {
+            console.log('request then', requestText);
             const payload = emojiHelper.buildSuggestMessage(requestText, emojis);
             got.post(response_url, {
                 body: JSON.stringify(payload)
