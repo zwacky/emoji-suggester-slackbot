@@ -14,14 +14,15 @@ function isUrl(str) {
  * builds a slack message block for an emoji suggestion.
  *
  * @param string userName
+ * @param string userId
  * @param string requestText
  * @param array emojis
  * @return object
  */
-function buildSuggestMessage(userName, requestText, emojis) {
+function buildSuggestMessage(userName, userId, requestText, emojis) {
     return {
         response_type: 'in_channel',
-        text: `Your request: *${requestText}*`,
+        text: `<@${userId}|${userName}> asked for suggestions: *${requestText}*`,
         unfurl_links: false,
         attachments: [
             {
