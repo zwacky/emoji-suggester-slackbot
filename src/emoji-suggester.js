@@ -12,10 +12,9 @@ function suggestEmojis(text) {
         query: {
             q: text || 'default'
         }
-    }).then(response => {
-        return response.body.results
-            .map(entry => entry.text);
-    });
+    })
+    .then(response => response.body.results.map(entry => entry.text))
+    .catch(err => console.log('getdango call failed'));
 }
 
 /**
@@ -37,7 +36,8 @@ function suggestEmojisFromUrl(url) {
             const $ = cheerio.load(response.body);
             const text = $('title').text() || $('h1').text() || $('meta[name="description"]').text();
             return suggestEmojis(text);
-        });
+        })
+        .catch(err => console.log('cheerio scrape failed'));
 }
 
 module.exports = {
