@@ -19,11 +19,12 @@ function isUrl(str) {
  */
 function buildSuggestMessage(requestText, emojis) {
     return {
-        'text': `Your request: *${requestText}*`,
-        'unfurl_links': false,
-        'attachments': [
+        response_type: 'in_channel',
+        text: `Your request: *${requestText}*`,
+        unfurl_links: false,
+        attachments: [
             {
-                'text': emojis.join(' ')
+                text: emojis.join(' ')
             }
         ]
     };
