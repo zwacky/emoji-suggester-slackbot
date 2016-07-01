@@ -29,6 +29,7 @@ app.post('/suggest', (req, res) => {
     const userName = req.body.user_name;
     const userId = req.body.user_id;
     const requestText = req.body.text;
+    console.log('incoming', userName, requestText);
     const promise = (emojiHelper.isUrl(requestText)) ?
         emojiSuggester.suggestEmojis(requestText) :
         emojiSuggester.suggestEmojisFromUrl(requestText);
