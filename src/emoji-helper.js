@@ -22,7 +22,7 @@ function isUrl(str) {
 function buildSuggestMessage(userName, userId, requestText, emojis) {
     return {
         response_type: 'in_channel',
-        text: `<@${userId}|${userName}> asked for suggestions: *${requestText}*`,
+        text: `<@${userId}|${userName}> asked for emoji suggestions: *${requestText}*`,
         unfurl_links: false,
         attachments: [
             {

@@ -42,7 +42,9 @@ app.post('/suggest', (req, res) => {
             const payload = emojiHelper.buildSuggestMessage(userName, userId, requestText, emojis);
             got.post(response_url, {
                 body: JSON.stringify(payload)
-            });
+            })
+            .then(() => console.log('success'))
+            .catch(() => console.log('failure'));
         });
 });
 
