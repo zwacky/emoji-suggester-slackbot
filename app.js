@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
  */
 app.post('/suggest', (req, res) => {
     const userName = req.body.user_name;
+    console.log('💋', req.body);
     const requestText = req.body.text;
     const promise = (emojiHelper.isUrl(requestText)) ?
         emojiSuggester.suggestEmojis(requestText) :
@@ -38,7 +39,7 @@ app.post('/suggest', (req, res) => {
 
     promise
         .then(emojis => {
-            const payload = emojiHelper.buildSuggestMessage(requestText, emojis);
+            const payload = emojiHelper.buildSuggestMessage(userName, requestText, emojis);
             got.post(response_url, {
                 body: JSON.stringify(payload)
             });
