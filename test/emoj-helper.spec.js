@@ -11,6 +11,8 @@ describe('emoji helper', () => {
             {text: 'https://www.disney.com', result: true},
             {text: 'https://www.disney.com with some appending text', result: false},
             {text: 'with prepending text https://www.disney.com', result: false},
+            {text: 'google.com', result: true},
+            {text: 'google.com more appending text', result: false},
         ];
 
         checks.forEach(item => {

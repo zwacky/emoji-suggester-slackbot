@@ -7,6 +7,7 @@ const Uri = require('jsuri');
 const DANGO_API = 'http://emoji.getdango.com/api';
 
 function suggestEmojis(text) {
+    console.log('suggest emoji', text);
     return got(`${DANGO_API}/emoji`, {
         json: true,
         query: {
@@ -28,6 +29,7 @@ function suggestEmojis(text) {
  * @param string url
  */
 function suggestEmojisFromUrl(url) {
+    console.log('from url', url);
     const uri = new Uri(url)
         .replaceQueryParam('_escaped_fragment_')
         .toString();
