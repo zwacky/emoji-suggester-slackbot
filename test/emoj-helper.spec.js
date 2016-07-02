@@ -9,14 +9,14 @@ describe('emoji helper', () => {
         const checks = [
             {text: 'just some text', result: false},
             {text: 'https://www.disney.com', result: true},
+            {text: 'www.disney.com', result: true},
+            {text: 'disney.com', result: true},
             {text: 'https://www.disney.com with some appending text', result: false},
             {text: 'with prepending text https://www.disney.com', result: false},
-            {text: 'google.com', result: true},
-            {text: 'google.com more appending text', result: false},
         ];
 
         checks.forEach(item => {
-            const result = emojiHelper.isUrl(item.text)
+            const result = emojiHelper.isUrl(item.text);
             assert.equal(result, item.result);
         });
     });
