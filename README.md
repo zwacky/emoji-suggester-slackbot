@@ -6,7 +6,7 @@ This Slack bot is based on [Dango's Emoji & Deep Learning](http://getdango.com/e
 
 # Support
 
-Create an issue here.
+Create an [issue](https://github.com/zwacky/emoji-suggester-slackbot/issues) here.
 
 # Privacy Policy
 
