@@ -31,7 +31,7 @@ app.post('/suggest', (req, res) => {
     const requestText = req.body.text;
     console.log('incoming', userName, requestText);
     const promise = (emojiHelper.isUrl(requestText)) ?
-        emojiSuggester.suggestEmojisFromUrl(requestText) : 
+        emojiSuggester.suggestEmojisFromUrl(requestText) :
         emojiSuggester.suggestEmojis(requestText);
     const response_url = req.body.response_url;
 
@@ -46,6 +46,13 @@ app.post('/suggest', (req, res) => {
             })
             .then(() => console.log('success'))
             .catch(() => console.log('failure'));
+        })
+        .catch((err) => {
+            got.post(response_url, {
+                body: JSON.stringify(emojiHelper.buildErrorMessage(err))
+            })
+            .then(() => console.log('success #2'))
+            .catch(() => console.log('failure #2'));
         });
 });
 

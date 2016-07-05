@@ -35,7 +35,21 @@ function buildSuggestMessage(userName, userId, requestText, emojis) {
     };
 }
 
+/**
+ * builds an error message only for the user visible.
+ *
+ * @param string err
+ * @return object
+ */
+function buildErrorMessage(err) {
+    return {
+        text: `error occurred with your command. (${err})`,
+        unfurl_links: false,
+    };
+};
+
 module.exports = {
     isUrl,
     buildSuggestMessage,
+    buildErrorMessage,
 };
